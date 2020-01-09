@@ -5,11 +5,14 @@ const morgan = require('morgan');
 // path
 const path = require('path');
 // création de app à partir de la fonction express
+// route index
+const index = require('./routes');
+// base de donnée
+require('./database');
+
 const app = express();
 // variable d'environnement PORT ou port par défaut 3000 si pas défini
 const port = process.env.PORT || 3000;
-// route index
-const index = require('./routes');
 
 // définir le folder pour les vues
 app.set('views', path.join(__dirname, 'views') );
