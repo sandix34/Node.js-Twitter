@@ -1,7 +1,11 @@
 // création du router
 const router = require("express").Router(); // <--- on appelle directement Router
 
-// définir une route
+// définir les routes
+router.get("/tweet/new", (req, res) => {
+  res.render("tweets/tweet-form");
+});
+
 router.get("/", (req, res) => {
   res.render("tweets/tweet-list");
 });
