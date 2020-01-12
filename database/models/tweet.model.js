@@ -5,7 +5,12 @@ const schema = mongoose.Schema;
 
 // création du schema
 const tweetSchema = schema({
-  content: { type: String, maxlength: 140, minlength: 1, required: true }
+  content: { 
+    type: String, 
+    maxlength: [140, 'Tweet trop long'], 
+    minlength: [1, 'Tweet trop court'], 
+    required: [true, 'Champ requis'] 
+  }
 });
 // création du model
 const Tweet = mongoose.model('tweet', tweetSchema);

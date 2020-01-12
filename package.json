@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "PORT=5000 nodemon app.js",
+    "start": "PORT=4000 nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -12,9 +12,9 @@
   "dependencies": {
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.8.6",
+    "mongoose": "^5.8.7",
     "morgan": "^1.9.1",
-    "nodemon": "^1.19.1",
+    "nodemon": "^2.0.2",
     "pug": "^2.0.4"
   }
 }
