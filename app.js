@@ -13,6 +13,11 @@ const errorHandler = require("errorhandler");
 
 // création de app à partir de la fonction express
 const app = express();
+// pour l'utiliser dans config
+exports.app = app;
+// configuration de la session
+require('./config/session.config');
+
 // variable d'environnement PORT ou port par défaut 3000 si pas défini
 const port = process.env.PORT || 3000;
 
