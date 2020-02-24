@@ -10,6 +10,6 @@ router.get('/', (req, res) => {
 })
 
 router.use('/users', users);
-router.use('./auth', auth);
+router.use('/auth', auth);
 
 module.exports = router;
