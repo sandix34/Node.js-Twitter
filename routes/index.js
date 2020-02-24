@@ -2,6 +2,7 @@
 const router = require("express").Router(); // <--- on appelle directement Router
 const tweets = require('./tweets.routes');
 const users = require('./users.routes');
+const auth = require('./auth.routes');
 
 router.use("/tweets", tweets);
 router.get('/', (req, res) => {

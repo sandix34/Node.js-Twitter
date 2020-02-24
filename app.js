@@ -17,6 +17,8 @@ const app = express();
 exports.app = app;
 // configuration de la session
 require('./config/session.config');
+// comparer les hash des mots de passe
+require('./config/passport.config');
 
 // variable d'environnement PORT ou port par défaut 3000 si pas défini
 const port = process.env.PORT || 3000;
