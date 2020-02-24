@@ -2,7 +2,7 @@ const { createUser } = require('../queries/users.queries');
 
 // permet d'envoyer le formulaire d'inscription à l'utilisateur
 exports.signupForm = (req, res, next) => {
-  res.render('users/user-form', { errors: null });
+  res.render('users/user-form', { errors: null, isAuthenticated: req.isAuthenticated(), currentUser: req.user });
 }
 
 // permet de créer un nouvel utilisateur dans la base de donnée
@@ -12,6 +12,6 @@ exports.signup = async (req, res, next) => {
     const user = await createUser(body);
     res.redirect('/');
   } catch(e) {
-    res.render('users/user-form', { errors: [ e.message ] });
+    res.render('users/user-form', { errors: [ e.message ], isAuthenticated: req.isAuthenticated(), currentUser: req.user });
   }
 }
