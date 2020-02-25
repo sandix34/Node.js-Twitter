@@ -8,7 +8,8 @@ const userSchema = schema({
   local: {
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true }
-  }
+  },
+  avatar: { type: String, default: '/images/default-profile.svg' }
 });
 
 // hasher le mot de passe
