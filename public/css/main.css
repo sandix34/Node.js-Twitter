@@ -14,7 +14,7 @@
 }
 
 .img-fluid {
-  max-height: 100px;
+  border-radius: 100%;
 }
 
 body {
@@ -39,7 +39,7 @@ body {
 
 .tweet-element {
   border-radius: 0px;
-  border-top: 1px solid #ddd;
-  border: 0px;
-  font-size: 14px;
+  font-size:14px;
+  border:0px;
+  border-top:1px solid #ddd;
 }

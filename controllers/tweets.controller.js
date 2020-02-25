@@ -1,17 +1,17 @@
-const { getTweets, createTweet, deleteTweet, getTweet,  updateTweet} = require('../queries/tweets.queries');
+const { getTweets, createTweet, deleteTweet, getTweet,  updateTweet, getCurrentUserTweetsWithFollowing} = require('../queries/tweets.queries');
 
 exports.tweetList = async (req, res, next) => {
   try {
-    const tweets = await getTweets();
+    const tweets = await getCurrentUserTweetsWithFollowing(req.user);
     // méthode à disposition par Passport : req.isAuthenticad() & req.user
-    res.render("tweets/tweet", { tweets, isAuthenticated: req.isAuthenticated(), currentUser: req.user });
+    res.render("tweets/tweet", { tweets, isAuthenticated: req.isAuthenticated(), currentUser: req.user, user: req.user });
   } catch(e) {
     next(e);
   }
 }
 
 exports.tweetNew = (req, res, next) => {
-  res.render("tweets/tweet-form", { tweet: {}, isAuthenticated: req.isAuthenticated(), currentUser: req.user });
+  res.render("tweets/tweet-form", { tweet: {}, isAuthenticated: req.isAuthenticated(), currentUser: req.user, user: req.user });
 }
 
 exports.tweetCreate = async (req, res, next) => {
