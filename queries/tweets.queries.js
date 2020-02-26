@@ -28,6 +28,6 @@ exports.getCurrentUserTweetsWithFollowing = (user) => {
 }
 
 // chercher tous les tweets ayant pour auteur l'utilisateur dont l'_id est passé en argument
-exports.getUserTweetsFormAuthorId = (authorId) => {
+exports.getUserTweetsFromAuthorId = (authorId) => {
   return Tweet.find({ author: authorId }).populate('author').exec();
 }
