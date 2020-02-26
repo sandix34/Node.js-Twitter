@@ -4,7 +4,7 @@ exports.tweetList = async (req, res, next) => {
   try {
     const tweets = await getCurrentUserTweetsWithFollowing(req.user);
     // méthode à disposition par Passport : req.isAuthenticad() & req.user
-    res.render("tweets/tweet", { tweets, isAuthenticated: req.isAuthenticated(), currentUser: req.user, user: req.user });
+    res.render("tweets/tweet", { tweets, isAuthenticated: req.isAuthenticated(), currentUser: req.user, user: req.user, editable: true });
   } catch(e) {
     next(e);
   }
@@ -32,8 +32,8 @@ exports.tweetDelete = async (req, res, next) => {
   try {
     const tweetId = req.params.tweetId;
     await deleteTweet(tweetId);
-    const tweets = await getTweets();
-    res.render('tweets/tweet-list', { tweets })
+    const tweets = await getCurrentUserTweetsWithFollowing(req.user);
+    res.render('tweets/tweet-list', { tweets, cuurentUser: req.user, editable: true })
   } catch(e) {
     next(e);
   }
@@ -43,7 +43,7 @@ exports.tweetEdit = async (req, res, next) => {
   try {
     const tweetId = req.params.tweetId;
     const tweet = await getTweet(tweetId);
-    res.render('tweets/tweet-form', { tweet, isAuthenticated: req.isAuthenticad(), currentUser: req.user });
+    res.render('tweets/tweet-form', { tweet, isAuthenticated: req.isAuthenticated(), currentUser: req.user });
   } catch(e) {
     next(e);
   }

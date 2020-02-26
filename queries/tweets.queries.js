@@ -24,10 +24,10 @@ exports.updateTweet = (tweetId, tweet) => {
 // chercher tous les tweets dont les auteurs on pour _id l'un de ceux contenus dans le tableau
 // passer dans le tableau tous les _id des utilisateurs suivis par l'utilisateur courant ainsi que son _id
 exports.getCurrentUserTweetsWithFollowing = (user) => {
-  return Tweet.find({ author: { $in: [ ...user.following, user._id ] }}).exec();
+  return Tweet.find({ author: { $in: [ ...user.following, user._id ] }}).populate('author').exec();
 }
 
 // chercher tous les tweets ayant pour auteur l'utilisateur dont l'_id est passé en argument
 exports.getUserTweetsFormAuthorId = (authorId) => {
-  return Tweet.find({ author: authorId }).exec();
+  return Tweet.find({ author: authorId }).populate('author').exec();
 }
