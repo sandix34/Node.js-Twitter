@@ -1,4 +1,4 @@
-const { createUser, findUserPerUsername, searchUsersPerUsername } = require('../queries/users.queries');
+const { createUser, findUserPerUsername, searchUsersPerUsername, addUserIdToCurrentUserFollowing, removeUserIdToCurrentUserFollowing, findUserPerId  } = require('../queries/users.queries');
 const { getUserTweetsFromAuthorId } = require('../queries/tweets.queries');
 const path = require("path");
 const multer  = require('multer')
@@ -11,6 +11,26 @@ const upload = multer({ storage: multer.diskStorage({ // sauvegarderles images s
     cb(null, `${ Date.now() }-${ file.originalname }`); // nom de fichier unique
   }
 }) })
+
+exports.followUser = async (req, res, next) => {
+  try {
+    const userId = req.params.userId;
+    const [, user] = await Promise.all([ addUserIdToCurrentUserFollowing(req.user, userId), findUserPerId(userId)]);
+    res.redirect(`/users/${ user.username }`);
+  } catch(e) {
+    next(e);
+  }
+}
+
+exports.unFollowUser = async (req, res, next) => {
+  try {
+    const userId = req.params.userId;
+    const [, user] = await Promise.all([ removeUserIdToCurrentUserFollowing(req.user, userId), findUserPerId(userId)]);
+    res.redirect(`/users/${ user.username }`);
+  } catch(e) {
+    next(e);
+  }
+}
 
 
 exports.userList = async (req, res, next) => {
