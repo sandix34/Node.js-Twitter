@@ -13,5 +13,3 @@
 - Tweets feed
 - Système d'autentification
 - Follow de users
-- Commentaires de tweets
-- Ajout de socket pour l'update en temps réel
